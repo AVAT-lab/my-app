@@ -1,0 +1,19 @@
+{
+  "name": "CuisineIdées - Suggestions de Recettes",
+  "short_name": "CuisineIdées",
+  "description": "Trouvez des idées de recettes selon vos ingrédients disponibles ou par thématique.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FF6B6B",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://cdn.jsdelivr.net/npm/remixicon@3.5.0/icons/Others/restaurant-2-fill.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["food", "cooking", "recipes", "lifestyle"]
+}
