@@ -1,4 +1,4 @@
-import { Recipe, User, type InsertUser, type InsertRecipe } from "@shared/schema";
+import { Recipe, User, type InsertUser, type InsertRecipe, type Ingredient } from "@shared/schema";
 import { recipeData } from "@shared/recipeData";
 
 export interface IStorage {
@@ -69,11 +69,11 @@ export class MemStorage implements IStorage {
     // Map each recipe to an object with recipe and matching ingredient count
     const recipesWithMatches = allRecipes.map(recipe => {
       const recipeIngredients = recipe.ingredients.map(
-        ing => ing.name.toLowerCase()
+        (ing: Ingredient) => ing.name.toLowerCase()
       );
       
       const matchCount = lowerCaseIngredients.filter(ingredient => 
-        recipeIngredients.some(ri => ri.includes(ingredient))
+        recipeIngredients.some((ri: string) => ri.includes(ingredient))
       ).length;
       
       return {

@@ -34,18 +34,18 @@ const IngredientsView: React.FC<IngredientsViewProps> = ({ recipes, favorites, o
     enabled: ingredients.length > 0,
   });
 
-  const recipeMatches = suggestedRecipes.map(recipe => {
-    const recipeIngredients = recipe.ingredients.map(i => i.name.toLowerCase());
-    const userIngredients = ingredients.map(i => i.toLowerCase());
+  const recipeMatches = suggestedRecipes.map((recipe: Recipe) => {
+    const recipeIngredients = recipe.ingredients.map((i: { name: string }) => i.name.toLowerCase());
+    const userIngredients = ingredients.map((i: string) => i.toLowerCase());
     
-    const matchingCount = userIngredients.filter(ingredient => 
-      recipeIngredients.some(ri => ri.includes(ingredient))
+    const matchingCount = userIngredients.filter((ingredient: string) => 
+      recipeIngredients.some((ri: string) => ri.includes(ingredient))
     ).length;
     
     const missingIngredients = recipe.ingredients
-      .map(i => i.name)
-      .filter(ingredient => 
-        !userIngredients.some(ui => 
+      .map((i: { name: string }) => i.name)
+      .filter((ingredient: string) => 
+        !userIngredients.some((ui: string) => 
           ingredient.toLowerCase().includes(ui)
         )
       );

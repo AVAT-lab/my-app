@@ -2,6 +2,15 @@ import { pgTable, text, serial, integer, boolean, jsonb } from "drizzle-orm/pg-c
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
+// Définir un type zod pour les ingrédients
+export const ingredientSchema = z.object({
+  name: z.string(),
+  quantity: z.string(),
+  unit: z.string()
+});
+
+export type Ingredient = z.infer<typeof ingredientSchema>;
+
 export const recipes = pgTable("recipes", {
   id: serial("id").primaryKey(),
   title: text("title").notNull(),
@@ -11,7 +20,7 @@ export const recipes = pgTable("recipes", {
   calories: integer("calories").notNull(),
   difficulty: text("difficulty").notNull(),
   categories: text("categories").array().notNull(),
-  ingredients: jsonb("ingredients").notNull(),
+  ingredients: jsonb("ingredients").$type<Ingredient[]>().notNull(),
   instructions: text("instructions").array().notNull(),
   isVegetarian: boolean("is_vegetarian").default(false).notNull(),
   isEconomic: boolean("is_economic").default(false).notNull(),
