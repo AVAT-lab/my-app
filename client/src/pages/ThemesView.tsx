@@ -8,6 +8,7 @@ interface ThemesViewProps {
   recipes: Recipe[];
   favorites: number[];
   onFavoriteToggle: (recipeId: number) => void;
+  onRecipeClick?: (recipe: Recipe) => void;
 }
 
 const categories = [
@@ -17,7 +18,7 @@ const categories = [
   { name: 'Végétarien', icon: 'plant' as const, color: 'warning' as const },
 ];
 
-const ThemesView: React.FC<ThemesViewProps> = ({ recipes, favorites, onFavoriteToggle }) => {
+const ThemesView: React.FC<ThemesViewProps> = ({ recipes, favorites, onFavoriteToggle, onRecipeClick }) => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [displayedRecipes, setDisplayedRecipes] = useState<Recipe[]>([]);
   const [showAll, setShowAll] = useState(false);
@@ -87,6 +88,7 @@ const ThemesView: React.FC<ThemesViewProps> = ({ recipes, favorites, onFavoriteT
                 variant="vertical"
                 favorites={favorites}
                 onFavoriteToggle={onFavoriteToggle}
+                onRecipeClick={onRecipeClick}
               />
             ))}
           </div>
@@ -110,6 +112,7 @@ const ThemesView: React.FC<ThemesViewProps> = ({ recipes, favorites, onFavoriteT
               variant="horizontal"
               favorites={favorites}
               onFavoriteToggle={onFavoriteToggle}
+              onRecipeClick={onRecipeClick}
             />
           ))}
         </div>

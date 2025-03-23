@@ -6,10 +6,12 @@ import ThemesView from '@/pages/ThemesView';
 import IngredientsView from '@/pages/IngredientsView';
 import FavoritesView from '@/pages/FavoritesView';
 import PwaInstallPrompt from '@/components/PwaInstallPrompt';
+import RecipeDetailView from '@/components/RecipeDetailView';
 import { useQuery } from '@tanstack/react-query';
 import { getFavorites, setFavorites } from '@/lib/favorites';
 import { filterRecipes } from '@/lib/recipes';
 import { canInstallPWA } from '@/lib/pwa';
+import { Recipe } from '@shared/schema';
 
 const HomePage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<TabType>('themes');
@@ -18,6 +20,7 @@ const HomePage: React.FC = () => {
   const [isOffline, setIsOffline] = useState(!navigator.onLine);
   const [showInstallPrompt, setShowInstallPrompt] = useState(false);
   const [favorites, setFavoritesState] = useState<number[]>(getFavorites());
+  const [selectedRecipe, setSelectedRecipe] = useState<Recipe | null>(null);
   
   const { data: recipes = [] } = useQuery({
     queryKey: ['/api/recipes'],
@@ -88,6 +91,14 @@ const HomePage: React.FC = () => {
     setFavorites(newFavorites);
   };
 
+  const handleRecipeClick = (recipe: Recipe) => {
+    setSelectedRecipe(recipe);
+  };
+
+  const handleCloseRecipeDetail = () => {
+    setSelectedRecipe(null);
+  };
+
   return (
     <>
       <Header 
@@ -107,6 +118,7 @@ const HomePage: React.FC = () => {
             recipes={filteredRecipes} 
             favorites={favorites}
             onFavoriteToggle={handleFavoriteToggle}
+            onRecipeClick={handleRecipeClick}
           />
         )}
         
@@ -115,6 +127,7 @@ const HomePage: React.FC = () => {
             recipes={recipes}
             favorites={favorites}
             onFavoriteToggle={handleFavoriteToggle}
+            onRecipeClick={handleRecipeClick}
           />
         )}
         
@@ -124,6 +137,7 @@ const HomePage: React.FC = () => {
             favorites={favorites}
             onFavoriteToggle={handleFavoriteToggle}
             onExploreClick={() => setActiveTab('themes')}
+            onRecipeClick={handleRecipeClick}
           />
         )}
       </main>
@@ -137,6 +151,15 @@ const HomePage: React.FC = () => {
         visible={showInstallPrompt}
         onClose={handlePwaPromptClose}
       />
+
+      {selectedRecipe && (
+        <RecipeDetailView 
+          recipe={selectedRecipe}
+          onClose={handleCloseRecipeDetail}
+          favorites={favorites}
+          onFavoriteToggle={handleFavoriteToggle}
+        />
+      )}
     </>
   );
 };
