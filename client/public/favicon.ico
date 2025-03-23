@@ -1,0 +1,4 @@
+<!-- Ce fichier est au format texte pour simuler une icône -->
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="#FF6B6B">
+  <path d="M11 3h2v7h-2zm0 11h2v7h-2zm10-3.2v2.4c-3.3 0-6 2.7-6 6h-2.4c0-4.6 3.7-8.4 8.4-8.4zM3 10.8v2.4h2.4c0-4.6 3.7-8.4 8.4-8.4v-2.4c-5.9 0-10.8 4.9-10.8 10.8zm0 5.2h6v6c-3.3 0-6-2.7-6-6z"/>
+</svg>

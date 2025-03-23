@@ -9,10 +9,42 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "https://cdn.jsdelivr.net/npm/remixicon@3.5.0/icons/Others/restaurant-2-fill.svg",
-      "type": "image/svg+xml",
-      "sizes": "any",
-      "purpose": "any"
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "prefer_related_applications": false,
+  "shortcuts": [
+    {
+      "name": "Recherche par thème",
+      "short_name": "Thèmes",
+      "description": "Accéder directement à la recherche par thème",
+      "url": "/?tab=themes"
+    },
+    {
+      "name": "Recherche par ingrédients",
+      "short_name": "Ingrédients",
+      "description": "Accéder directement à la recherche par ingrédients",
+      "url": "/?tab=ingredients"
+    },
+    {
+      "name": "Mes favoris",
+      "short_name": "Favoris",
+      "description": "Accéder directement à vos recettes favorites",
+      "url": "/?tab=favorites"
     }
   ],
   "categories": ["food", "cooking", "recipes", "lifestyle"]

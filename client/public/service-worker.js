@@ -1,13 +1,15 @@
 // Service Worker for CuisineIdées PWA
 
-const CACHE_NAME = 'cuisine-idees-v1';
+const CACHE_NAME = 'cuisine-idees-v2';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
   '/manifest.json',
-  '/src/main.tsx',
-  '/src/App.tsx',
-  '/src/index.css'
+  '/assets/index.css',
+  '/assets/index.js',
+  '/favicon.ico',
+  '/logo192.png',
+  '/logo512.png'
 ];
 
 // API data cache
