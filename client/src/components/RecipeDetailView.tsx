@@ -79,11 +79,11 @@ const RecipeDetailView: React.FC<RecipeDetailViewProps> = ({
           <div className="mt-6">
             <h2 className="font-nunito font-semibold text-lg mb-2">Ingrédients</h2>
             <ul className="bg-gray-50 p-3 rounded-lg">
-              {recipe.ingredients.map((ingredient, index) => (
+              {Array.isArray(recipe.ingredients) && recipe.ingredients.map((ingredient: any, index: number) => (
                 <li key={index} className="py-1 flex items-center">
                   <span className="w-4 h-4 bg-primary/20 rounded-full flex items-center justify-center mr-2 text-xs text-primary">•</span>
                   <span>
-                    {ingredient.amount ? `${ingredient.amount} ${ingredient.unit || ''} ` : ''}
+                    {ingredient.quantity ? `${ingredient.quantity} ${ingredient.unit || ''} ` : ''}
                     {ingredient.name}
                   </span>
                 </li>
@@ -94,10 +94,10 @@ const RecipeDetailView: React.FC<RecipeDetailViewProps> = ({
           <div className="mt-6">
             <h2 className="font-nunito font-semibold text-lg mb-2">Instructions</h2>
             <ol className="space-y-3">
-              {recipe.steps.map((step, index) => (
+              {recipe.instructions.map((instruction, index) => (
                 <li key={index} className="flex">
                   <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mr-3">{index + 1}</span>
-                  <p className="text-gray-700">{step}</p>
+                  <p className="text-gray-700">{instruction}</p>
                 </li>
               ))}
             </ol>
