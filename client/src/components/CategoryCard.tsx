@@ -8,9 +8,10 @@ interface CategoryCardProps {
     color: 'primary' | 'secondary' | 'success' | 'warning';
   };
   onClick: (category: string) => void;
+  isSelected?: boolean;
 }
 
-const CategoryCard: React.FC<CategoryCardProps> = ({ category, onClick }) => {
+const CategoryCard: React.FC<CategoryCardProps> = ({ category, onClick, isSelected = false }) => {
   const getIcon = () => {
     switch (category.icon) {
       case 'timer':
@@ -43,7 +44,9 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ category, onClick }) => {
   
   return (
     <div 
-      className={`category-card cursor-pointer bg-gradient-to-br ${getBgColor()} rounded-lg p-3 text-white shadow-sm transition hover:shadow-md hover:scale-[1.02]`}
+      className={`category-card cursor-pointer bg-gradient-to-br ${getBgColor()} rounded-lg p-3 text-white
+        ${isSelected ? 'ring-4 ring-white shadow-lg scale-[1.02]' : 'shadow-sm'} 
+        transition hover:shadow-md hover:scale-[1.02]`}
       onClick={() => onClick(category.name)}
     >
       <div className="flex flex-col items-center text-center">

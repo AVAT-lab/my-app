@@ -29,7 +29,18 @@ const ThemesView: React.FC<ThemesViewProps> = ({ recipes, favorites, onFavoriteT
   // Filter by selected category
   useEffect(() => {
     if (selectedCategory) {
-      const categoryName = selectedCategory.split(' ')[0].toLowerCase();
+      let categoryName = '';
+      
+      // Map the displayed category name to the actual category in the data
+      if (selectedCategory.includes('Rapide')) {
+        categoryName = 'rapide';
+      } else if (selectedCategory.includes('Facile')) {
+        categoryName = 'facile';
+      } else if (selectedCategory.includes('Économique')) {
+        categoryName = 'économique';
+      } else if (selectedCategory.includes('Végétarien')) {
+        categoryName = 'végétarien';
+      }
       
       const filtered = recipes.filter(recipe => 
         recipe.categories.some(cat => 
@@ -67,6 +78,7 @@ const ThemesView: React.FC<ThemesViewProps> = ({ recipes, favorites, onFavoriteT
               key={index} 
               category={category} 
               onClick={handleCategoryClick} 
+              isSelected={selectedCategory === category.name}
             />
           ))}
         </div>
