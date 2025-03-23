@@ -9,6 +9,7 @@ interface IngredientsViewProps {
   recipes: Recipe[];
   favorites: number[];
   onFavoriteToggle: (recipeId: number) => void;
+  onRecipeClick?: (recipe: Recipe) => void;
 }
 
 interface IngredientMatch {
@@ -17,7 +18,7 @@ interface IngredientMatch {
   missingIngredients: string[];
 }
 
-const IngredientsView: React.FC<IngredientsViewProps> = ({ recipes, favorites, onFavoriteToggle }) => {
+const IngredientsView: React.FC<IngredientsViewProps> = ({ recipes, favorites, onFavoriteToggle, onRecipeClick }) => {
   const [ingredients, setIngredients] = useState<string[]>([]);
   const [ingredientInput, setIngredientInput] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
@@ -136,7 +137,11 @@ const IngredientsView: React.FC<IngredientsViewProps> = ({ recipes, favorites, o
             ) : recipeMatches.length > 0 ? (
               <div className="divide-y">
                 {recipeMatches.map(({ recipe, matchingIngredients, missingIngredients }) => (
-                  <div key={recipe.id} className="py-3 flex gap-3 items-center cursor-pointer">
+                  <div 
+                    key={recipe.id} 
+                    className="py-3 flex gap-3 items-center cursor-pointer"
+                    onClick={() => onRecipeClick && onRecipeClick(recipe)}
+                  >
                     <img src={recipe.imageUrl} alt={recipe.title} className="h-16 w-16 object-cover rounded-lg" />
                     <div className="flex-1">
                       <h4 className="font-nunito font-semibold">{recipe.title}</h4>
@@ -152,7 +157,14 @@ const IngredientsView: React.FC<IngredientsViewProps> = ({ recipes, favorites, o
                         )}
                       </div>
                     </div>
-                    <button className="text-primary" aria-label="Voir la recette">
+                    <button 
+                      className="text-primary" 
+                      aria-label="Voir la recette"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onRecipeClick && onRecipeClick(recipe);
+                      }}
+                    >
                       <ArrowRightIcon className="text-xl" />
                     </button>
                   </div>

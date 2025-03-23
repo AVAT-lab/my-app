@@ -9,13 +9,15 @@ interface FavoritesViewProps {
   favorites: number[];
   onFavoriteToggle: (recipeId: number) => void;
   onExploreClick: () => void;
+  onRecipeClick?: (recipe: Recipe) => void;
 }
 
 const FavoritesView: React.FC<FavoritesViewProps> = ({ 
   recipes, 
   favorites, 
   onFavoriteToggle,
-  onExploreClick
+  onExploreClick,
+  onRecipeClick
 }) => {
   const favoriteRecipes = recipes.filter(recipe => favorites.includes(recipe.id));
   
@@ -46,6 +48,7 @@ const FavoritesView: React.FC<FavoritesViewProps> = ({
               variant="horizontal" 
               favorites={favorites}
               onFavoriteToggle={onFavoriteToggle}
+              onRecipeClick={onRecipeClick}
             />
           ))}
         </div>
