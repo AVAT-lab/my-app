@@ -42,12 +42,18 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ category, onClick, isSelect
     }
   };
   
+  // Fonction pour gérer le clic sur la catégorie
+  const handleClick = () => {
+    console.log('Category clicked:', category.name);
+    onClick(category.name);
+  };
+
   return (
     <div 
       className={`category-card cursor-pointer bg-gradient-to-br ${getBgColor()} rounded-lg p-3 text-white
         ${isSelected ? 'ring-4 ring-white shadow-lg scale-[1.02]' : 'shadow-sm'} 
         transition hover:shadow-md hover:scale-[1.02]`}
-      onClick={() => onClick(category.name)}
+      onClick={handleClick}
     >
       <div className="flex flex-col items-center text-center">
         {getIcon()}

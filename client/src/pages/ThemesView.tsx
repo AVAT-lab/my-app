@@ -62,6 +62,7 @@ const ThemesView: React.FC<ThemesViewProps> = ({ recipes, favorites, onFavoriteT
   }, [selectedCategory, recipes]);
   
   const handleCategoryClick = (category: string) => {
+    console.log('Category selected in ThemesView:', category);
     setSelectedCategory(category);
   };
   
