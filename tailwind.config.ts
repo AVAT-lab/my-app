@@ -26,8 +26,8 @@ export default {
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
+          DEFAULT: "#a855f7", // Purple-500 from Tailwind
+          foreground: "#ffffff",
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",
@@ -40,6 +40,14 @@ export default {
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
+        },
+        success: {
+          DEFAULT: "#10b981", // Emerald-500 from Tailwind
+          foreground: "#ffffff",
+        },
+        warning: {
+          DEFAULT: "#f59e0b", // Amber-500 from Tailwind
+          foreground: "#ffffff",
         },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
